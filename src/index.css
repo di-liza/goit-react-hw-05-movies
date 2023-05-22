@@ -19,3 +19,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+a {
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  color: #f58311;
+  text-decoration: underline;
+}
