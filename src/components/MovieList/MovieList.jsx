@@ -1,5 +1,6 @@
 import React from 'react';
 import { MovieItem } from 'components';
+
 function MovieList({ movies }) {
   return (
     <ul>
