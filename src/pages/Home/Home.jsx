@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import fetchTrendingMovies from '../../servises/trandMovies';
+import { fetchTrendingMovies } from 'servises';
 import { MovieList } from 'components';
 
 function Home() {
@@ -10,19 +10,19 @@ function Home() {
       try {
         const { results } = await fetchTrendingMovies(1);
         setMovies(results);
-        console.log(results);
+        // console.log(results);
       } catch (error) {
         console.log('error:', error);
       }
     };
-    getTrandMovies(1);
+    getTrandMovies();
   }, []);
 
   return (
-    <div>
+    <main>
       <h1>Home</h1>
       <MovieList movies={movies} />
-    </div>
+    </main>
   );
 }
 

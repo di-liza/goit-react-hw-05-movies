@@ -2,7 +2,7 @@ import { axios, API_KEY, BASE_URL } from './index';
 
 // return products.find(product => product.id === productId);
 
-export default async function getMovieById(movieId) {
+export default async function fetchMovieFullInfo(movieId) {
   try {
     const params = {
       api_key: API_KEY,
@@ -16,3 +16,7 @@ export default async function getMovieById(movieId) {
     console.log(error.message);
   }
 }
+
+export const getMovieById = (movies, productId) => {
+  return movies.find(movie => movie.id === productId);
+};

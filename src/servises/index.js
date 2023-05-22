@@ -6,4 +6,5 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 export { axios, API_KEY, BASE_URL };
 
 export { default as fetchTrendingMovies } from './trandMovies';
-export { default as getMovieById } from './findMovie';
+export { default as fetchMovieFullInfo } from './findMovie';
+export { getMovieById } from './trandMovies';

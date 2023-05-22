@@ -1,5 +1,5 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
-import { Home, Movies, NotFound, Reviews, Cast } from '../pages';
+import { Home, Movies, NotFound, Reviews, Cast, MovieDetails } from '../pages';
 import styled from '@emotion/styled';
 
 const StyledLink = styled(NavLink)`
@@ -26,10 +26,13 @@ export const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />}>
+        <Route path="/movies" element={<Movies />} />
+
+        <Route path="/movies/:id" element={<MovieDetails />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

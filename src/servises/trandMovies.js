@@ -1,4 +1,7 @@
-import { axios, API_KEY, BASE_URL } from './index';
+import { axios } from './index';
+
+const API_KEY = '5cb4dd4cf3f1476227d92f7c4b196044';
+const BASE_URL = 'https://api.themoviedb.org/3';
 
 export default async function fetchTrendingMovies(page) {
   try {
@@ -16,3 +19,19 @@ export default async function fetchTrendingMovies(page) {
     console.log(error.message);
   }
 }
+
+let movies = [];
+const getTrandMovies = async () => {
+  try {
+    const { results } = await fetchTrendingMovies(1);
+    movies = results;
+    // console.log(results);
+  } catch (error) {
+    console.log('error:', error);
+  }
+};
+getTrandMovies();
+
+export const getMovieById = movieId => {
+  return movies.find(movie => movie.id === movieId);
+};
