@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fetchTrendingMovies from '../../servises/trandMovies';
+import { MovieList } from 'components';
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -20,15 +21,7 @@ function Home() {
   return (
     <div>
       <h1>Home</h1>
-      <ul>
-        {movies.map(movie => {
-          return (
-            <li key={movie.id}>
-              <a href="/assets">{movie.original_title}</a>
-            </li>
-          );
-        })}
-      </ul>
+      <MovieList movies={movies} />
     </div>
   );
 }
