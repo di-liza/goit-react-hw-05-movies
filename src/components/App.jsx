@@ -1,3 +1,5 @@
+import getTrandMovies from '../servises/app';
+
 export const App = () => {
   return (
     <div
@@ -7,10 +9,20 @@ export const App = () => {
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 40,
-        color: '#010101'
       }}
     >
       React homework template
     </div>
   );
 };
+
+async function get() {
+  try {
+    const data = await getTrandMovies(1);
+    console.log(data);
+  } catch (error) {
+    console.log('error:', error);
+  }
+}
+
+get();
