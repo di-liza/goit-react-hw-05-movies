@@ -1,39 +1,23 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
-import { Home, Movies, NotFound, Reviews, Cast, MovieDetails } from '../pages';
-import styled from '@emotion/styled';
+import { Routes, Route } from 'react-router-dom';
+import { Home, Movies, NotFound, MovieDetails } from '../pages';
+import Layout from './Layout';
+import Reviews from './Reviews';
+import Cast from './Cast';
 
-const StyledLink = styled(NavLink)`
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 30px;
-
-  &.active {
-    color: orange;
-  }
-`;
 export const App = () => {
   return (
     <>
-      <nav>
-        <StyledLink to="/" end>
-          Home
-        </StyledLink>
-        <StyledLink to="/movies">Movies</StyledLink>
-      </nav>
-
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-
-        <Route path="/movies/:id" element={<MovieDetails />}>
-          <Route path="cast" element={<Cast />} />
-          <Route path="reviews" element={<Reviews />} />
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="cast" element={<Cast />} />
+            <Route />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
-
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

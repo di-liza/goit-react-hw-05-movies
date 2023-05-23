@@ -7,4 +7,6 @@ export { axios, API_KEY, BASE_URL };
 
 export { default as fetchTrendingMovies } from './trandMovies';
 export { default as fetchMovieFullInfo } from './findMovie';
-export { getMovieById } from './trandMovies';
+export { default as getMovieCast } from './getMovieCast';
+export { default as getMovieReviews } from './getMovieReviews';
+// export { getMovieById } from './trandMovies';
