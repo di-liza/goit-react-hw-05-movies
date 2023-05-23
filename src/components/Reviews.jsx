@@ -8,7 +8,7 @@ function Reviews() {
   const [movie, setMovie] = useState(null);
   useEffect(() => {
     getMovieReviews(movieId).then(movie => {
-      console.log(movie.results);
+      // console.log(movie.results);
       setMovie(movie);
     });
   }, [movieId]);
@@ -17,11 +17,11 @@ function Reviews() {
     <main>
       {movie && (
         <ul>
-          {movie.results.map(rev => {
+          {movie.results.map(({ id, author, content }) => {
             return (
-              <li key={rev.id}>
-                <p>Author: {rev.author}</p>
-                <p>Review: {rev.content}</p>
+              <li key={id}>
+                <p>Author: {author}</p>
+                <p>Review: {content}</p>
               </li>
             );
           })}

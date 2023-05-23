@@ -23,11 +23,11 @@ function Movies() {
     <main>
       <h1>Movies</h1>
       <ul>
-        {movies.map(movie => {
+        {movies.map(({ id, original_title }) => {
           return (
-            <li key={movie.id}>
-              <Link to={`${movie.id}`}>
-                <h4>{movie.original_title}</h4>
+            <li key={id}>
+              <Link to={`${id}`}>
+                <h4>{original_title}</h4>
               </Link>
             </li>
           );
