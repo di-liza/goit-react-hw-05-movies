@@ -1,14 +1,13 @@
 import { axios, API_KEY, BASE_URL } from './index';
 
-// return products.find(product => product.id === productId);
-
-async function fetchMovieFullInfo(movieId) {
+async function fetchMovieByName(query) {
   try {
     const params = {
+      query: query,
       api_key: API_KEY,
       language: 'en-US',
     };
-    const response = await axios.get(`${BASE_URL}/movie/${movieId}?`, {
+    const response = await axios.get(`${BASE_URL}/search/movie?`, {
       params,
     });
     return response.data;
@@ -17,8 +16,4 @@ async function fetchMovieFullInfo(movieId) {
   }
 }
 
-export default fetchMovieFullInfo;
-
-// export const getMovieById = (movies, productId) => {
-//   return movies.find(movie => movie.id === productId);
-// };
+export default fetchMovieByName;

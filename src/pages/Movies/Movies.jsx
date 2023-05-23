@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { fetchTrendingMovies } from 'servises';
 import { Link } from 'react-router-dom';
+import SeachMovie from 'components/SeachMovie';
 
 function Movies() {
   const [movies, setMovies] = useState([]);
@@ -22,6 +23,7 @@ function Movies() {
   return (
     <main>
       <h1>Movies</h1>
+      <SeachMovie />
       <ul>
         {movies.map(({ id, original_title }) => {
           return (
