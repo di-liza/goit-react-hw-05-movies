@@ -1,13 +1,12 @@
 import { axios, API_KEY, BASE_URL } from './index';
 
-async function fetchMovieByName(query) {
+async function getMovieFullInfo(movieId) {
   try {
     const params = {
-      query: query,
       api_key: API_KEY,
       language: 'en-US',
     };
-    const response = await axios.get(`${BASE_URL}/search/movie?`, {
+    const response = await axios.get(`${BASE_URL}/movie/${movieId}?`, {
       params,
     });
     return response.data;
@@ -16,4 +15,4 @@ async function fetchMovieByName(query) {
   }
 }
 
-export default fetchMovieByName;
+export default getMovieFullInfo;

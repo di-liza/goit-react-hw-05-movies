@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieFullInfo } from 'servises';
+import { getMovieFullInfo } from 'servises';
 import { Link, Outlet } from 'react-router-dom';
 
 function MovieDetails() {
@@ -8,8 +8,8 @@ function MovieDetails() {
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    fetchMovieFullInfo(movieId).then(movie => {
-      console.log(movie);
+    getMovieFullInfo(movieId).then(movie => {
+      // console.log(movie);
       setMovie(movie);
     });
   }, [movieId]);
@@ -44,10 +44,10 @@ function MovieDetails() {
         <p>Overview: {overview}</p>
         <p>Genres</p>
         <ul>
-          {genres.map(genre => {
+          {genres.map(({ id, name }) => {
             return (
-              <li key={genre.id}>
-                <p>{genre.name}</p>
+              <li key={id}>
+                <p>{name}</p>
               </li>
             );
           })}
@@ -68,16 +68,3 @@ function MovieDetails() {
 }
 
 export default MovieDetails;
-
-// <main>
-//   <img
-//     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-//     alt={movie.title}
-//   />
-//   <div>
-//     <h2>
-//       {movie.original_title} - {movie.id}
-//     </h2>
-//     <p>{movie.overview}</p>
-//   </div>
-// </main>

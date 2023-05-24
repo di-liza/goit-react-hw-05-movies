@@ -1,10 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import { Home, Movies, NotFound, MovieDetails } from '../pages';
-import Layout from './Layout';
-import Reviews from './Reviews';
-import Cast from './Cast';
+import { Home, Movies, NotFound, MovieDetails } from 'pages';
+import { Layout, Reviews, Cast } from 'components';
 
-export const App = () => {
+const App = () => {
   return (
     <>
       <Routes>
@@ -22,3 +20,4 @@ export const App = () => {
     </>
   );
 };
+export default App;

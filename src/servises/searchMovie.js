@@ -1,18 +1,19 @@
 import { axios, API_KEY, BASE_URL } from './index';
 
-export default async function getTrendingMovies(page) {
+async function searchMovie(query) {
   try {
     const params = {
+      query: query,
       api_key: API_KEY,
       language: 'en-US',
-      page: page,
     };
-    const response = await axios.get(`${BASE_URL}/trending/movie/day?`, {
+    const response = await axios.get(`${BASE_URL}/search/movie?`, {
       params,
     });
-
     return response.data;
   } catch (error) {
     console.log(error.message);
   }
 }
+
+export default searchMovie;

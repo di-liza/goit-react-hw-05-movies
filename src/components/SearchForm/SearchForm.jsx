@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
-// import { useParams } from 'react-router-dom';
-import { fetchMovieByName } from 'servises';
+import { searchMovie } from 'servises';
 
-function SeachMovie() {
-  // const { movieId } = useParams();
+function SearchForm() {
   const [query, setQuery] = useState('');
   const [movie, setMovie] = useState([]);
+  console.log(movie);
 
-  const handleInputChange = event => {
-    const value = event.target.value;
+  const handleInputChange = ({ target: { value } }) => {
     setQuery(value);
   };
   const handleFormSubmit = event => {
     event.preventDefault();
-    console.log(movie);
+    // console.log(movie);
     // setQuery('');
   };
 
   useEffect(() => {
-    fetchMovieByName(query).then(movie => {
-      setMovie(movie);
-      console.log(movie);
-    });
+    if (query !== '') {
+      searchMovie(query).then(movie => {
+        setMovie(movie);
+      });
+    }
   }, [query]);
 
   return (
@@ -39,4 +38,4 @@ function SeachMovie() {
   );
 }
 
-export default SeachMovie;
+export default SearchForm;
