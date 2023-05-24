@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
+
 import { getMovieFullInfo } from 'servises';
-import { Link, Outlet } from 'react-router-dom';
 
 function MovieDetails() {
   const { movieId } = useParams();
