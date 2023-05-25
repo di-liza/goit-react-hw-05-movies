@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link, Outlet } from 'react-router-dom';
-
 import { getMovieFullInfo } from 'servises';
 
 function MovieDetails() {

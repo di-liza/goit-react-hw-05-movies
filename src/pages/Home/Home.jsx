@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getTrendingMovies } from 'servises';
-import { Link } from 'react-router-dom';
+import { MoviesList } from 'components';
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -21,7 +21,8 @@ function Home() {
   return (
     <>
       <h1>Home</h1>
-      <ul>
+      <MoviesList movies={movies} />
+      {/* <ul>
         {movies.map(({ id, original_title, poster_path }) => {
           const poster = poster_path
             ? `https://image.tmdb.org/t/p/w500/${poster_path}`
@@ -40,7 +41,7 @@ function Home() {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
     </>
   );
 }

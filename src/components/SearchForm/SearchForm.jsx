@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { searchMovie } from 'servises';
+import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-function SearchForm() {
-  const [query, setQuery] = useState('');
-  const [movie, setMovie] = useState([]);
-  console.log(movie);
+function SearchForm({ filterMovie }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('query') ?? '';
 
   const handleInputChange = ({ target: { value } }) => {
-    setQuery(value);
+    setSearchParams({ query: value });
   };
   const handleFormSubmit = event => {
     event.preventDefault();
-    // console.log(movie);
-    // setQuery('');
+    filterMovie(searchQuery);
+    setSearchParams({});
   };
-
-  useEffect(() => {
-    if (query !== '') {
-      searchMovie(query).then(movie => {
-        setMovie(movie);
-      });
-    }
-  }, [query]);
 
   return (
     <form onSubmit={handleFormSubmit}>
@@ -32,8 +23,10 @@ function SearchForm() {
         autoComplete="off"
         autoFocus
         placeholder="Search movie..."
-        value={query}
+        value={searchQuery}
+        name="movieQuery"
       />
+      <button type="submit">Search</button>
     </form>
   );
 }
