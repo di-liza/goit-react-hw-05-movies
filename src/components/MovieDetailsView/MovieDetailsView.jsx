@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import {
+  StyledMain,
   StyledMovieDetailsView,
   AdditionalInfo,
 } from './MovieDetailsView.styled';
@@ -28,11 +29,11 @@ function MovieDetailsView({
     : '';
 
   return (
-    <main>
+    <StyledMain bgImage={posterBg}>
       <StyledMovieDetailsView>
-        <div className="movie-details__bg">
+        {/* <div className="movie-details__bg">
           <img className="movie-details__bg-img" src={posterBg} alt="" />
-        </div>
+        </div> */}
 
         <div className="movie-details__info">
           <div className="info-box">
@@ -56,8 +57,8 @@ function MovieDetailsView({
           <img className="movie-details__poster " src={poster} alt={title} />
         </div>
         <AdditionalInfo>
-          <p>Additional information</p>
-          <ul className="movie-details__additional-info">
+          <p className="add-info__title">Additional information</p>
+          <ul className=" add-info__list">
             <li>
               <Link to="reviews">Reviews</Link>
             </li>
@@ -65,11 +66,10 @@ function MovieDetailsView({
               <Link to="cast">Cast</Link>
             </li>
           </ul>
+          <Outlet />
         </AdditionalInfo>
       </StyledMovieDetailsView>
-
-      <Outlet />
-    </main>
+    </StyledMain>
   );
 }
 

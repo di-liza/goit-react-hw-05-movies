@@ -1,8 +1,19 @@
 const { default: styled } = require('@emotion/styled');
+
+export const StyledMain = styled.main`
+  height: 100vmax;
+
+  background-image: linear-gradient(to right, rgb(0 0 0), rgba(47, 48, 58, 0.4)),
+    url(${props => props.bgImage});
+  background-size: cover;
+  background-position: 50% 50%;
+
+  overflow-y: scroll;
+`;
+
 export const StyledMovieDetailsView = styled.div`
   height: 100vmax;
   position: relative;
-  background-color: #000000d1;
 
   .movie-details__poster {
     width: 300px;
@@ -65,4 +76,18 @@ export const AdditionalInfo = styled.div`
   bottom: 30%;
   left: 50%;
   z-index: 100; */
+  margin-top: 30px;
+
+  .add-info__title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+  }
+  .add-info__list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 25px;
+    margin: 18px;
+  }
 `;
