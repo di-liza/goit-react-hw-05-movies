@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { Form } from './SearchForm.styled';
+
 function SearchForm({ filterMovie }) {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
@@ -15,10 +17,10 @@ function SearchForm({ filterMovie }) {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <Form onSubmit={handleFormSubmit}>
       <input
         onChange={handleInputChange}
-        className="input"
+        className="movie-search-input"
         type="text"
         autoComplete="off"
         autoFocus
@@ -26,8 +28,10 @@ function SearchForm({ filterMovie }) {
         value={searchQuery}
         name="movieQuery"
       />
-      <button type="submit">Search</button>
-    </form>
+      <button className="movie-search-button" type="submit">
+        Search
+      </button>
+    </Form>
   );
 }
 

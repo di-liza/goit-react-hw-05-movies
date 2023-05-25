@@ -28,7 +28,6 @@ function Movies() {
 
   return (
     <main>
-      <h1>Movies</h1>
       <SearchForm filterMovie={getFilteredMovies} />
 
       {filteredMovies !== [] && <MoviesList movies={filteredMovies} />}
