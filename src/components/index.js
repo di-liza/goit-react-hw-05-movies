@@ -7,3 +7,4 @@ export { default as Reviews } from './Reviews/Reviews.jsx';
 export { default as SearchForm } from './SearchForm/SearchForm.jsx';
 export { default as MovieItem } from './MovieItem/MovieItem.jsx';
 export { default as MoviesList } from './MoviesList/MoviesList.jsx';
+export { default as MovieDetailsView } from './MovieDetailsView/MovieDetailsView.jsx';
