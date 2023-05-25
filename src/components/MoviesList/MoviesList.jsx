@@ -1,14 +1,14 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
 import { MovieItem } from 'components';
+import { MovieListStyled } from './MoviesList.styled';
 
 function MoviesList({ movies }) {
   return (
-    <ul>
+    <MovieListStyled>
       {movies.map(movie => {
         return <MovieItem key={movie.id} movie={movie} />;
       })}
-    </ul>
+    </MovieListStyled>
   );
 }
 

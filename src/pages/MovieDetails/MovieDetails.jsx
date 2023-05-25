@@ -11,8 +11,8 @@ function MovieDetails() {
     const getFullInfo = async () => {
       try {
         const data = await getMovieFullInfo(movieId);
-        console.log('data:', data);
         setMovie(data);
+        console.log('data:', data);
       } catch (error) {
         console.log(error);
       }
