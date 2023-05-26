@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { searchMovie } from 'servises';
 import { MoviesList, SearchForm } from 'components';
+import { useLocation } from 'react-router-dom';
+
 // import { useMemo } from 'react';
 
 function Movies() {
@@ -20,8 +22,9 @@ function Movies() {
     };
     getMovies();
   }, [filter]);
-
-  console.log(filteredMovies);
+  const location = useLocation();
+  console.log('location:', location);
+  // console.log(filteredMovies);
 
   const getFilteredMovies = searchQuery => {
     const normalizedQuery = searchQuery.toLowerCase();
@@ -33,7 +36,9 @@ function Movies() {
     <main>
       <SearchForm filterMovie={getFilteredMovies} />
 
-      {filteredMovies !== [] && <MoviesList movies={filteredMovies} />}
+      {filteredMovies !== [] && (
+        <MoviesList movies={filteredMovies} location={location} />
+      )}
     </main>
   );
 }
