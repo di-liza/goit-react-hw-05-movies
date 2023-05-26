@@ -8,7 +8,9 @@ function SearchForm({ filterMovie }) {
   const searchQuery = searchParams.get('query') ?? '';
 
   const handleInputChange = ({ target: { value } }) => {
-    setSearchParams({ query: value });
+    return value !== ''
+      ? setSearchParams({ query: value })
+      : setSearchParams({});
   };
   const handleFormSubmit = event => {
     event.preventDefault();

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { searchMovie } from 'servises';
 import { MoviesList, SearchForm } from 'components';
+// import { useMemo } from 'react';
 
 function Movies() {
   const [filter, setFilter] = useState('');
@@ -19,6 +20,8 @@ function Movies() {
     };
     getMovies();
   }, [filter]);
+
+  console.log(filteredMovies);
 
   const getFilteredMovies = searchQuery => {
     const normalizedQuery = searchQuery.toLowerCase();
