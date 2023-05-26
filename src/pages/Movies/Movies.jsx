@@ -2,42 +2,53 @@ import React, { useEffect, useState } from 'react';
 import { searchMovie } from 'servises';
 import { MoviesList, SearchForm } from 'components';
 import { useLocation } from 'react-router-dom';
-
-// import { useMemo } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 function Movies() {
-  const [filter, setFilter] = useState('');
-  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const location = useLocation();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('query') ?? '';
+
+  const [query, setQuery] = useState('');
+
+  const handleInputChange = ({ target: { value } }) => {
+    setQuery(value);
+  };
+
+  const handleFormSubmit = event => {
+    event.preventDefault();
+    const save =
+      query !== '' ? setSearchParams({ query }) : setSearchParams({});
+    setQuery('');
+    return save;
+  };
 
   useEffect(() => {
     const getMovies = async () => {
-      if (filter !== '') {
+      if (searchQuery !== '') {
         try {
-          const { results } = await searchMovie(filter);
-          setFilteredMovies(results);
+          const { results } = await searchMovie(searchQuery);
+          setMovies([...results]);
         } catch (error) {
           console.log(error);
         }
       }
     };
     getMovies();
-  }, [filter]);
-  const location = useLocation();
-  console.log('location:', location);
-  // console.log(filteredMovies);
-
-  const getFilteredMovies = searchQuery => {
-    const normalizedQuery = searchQuery.toLowerCase();
-
-    setFilter(normalizedQuery);
-  };
+  }, [searchQuery]);
 
   return (
     <main>
-      <SearchForm filterMovie={getFilteredMovies} />
+      <SearchForm
+        onFormSubmit={handleFormSubmit}
+        onInputChange={handleInputChange}
+        inputValue={query}
+      />
 
-      {filteredMovies !== [] && (
-        <MoviesList movies={filteredMovies} location={location} />
+      {movies.length > 0 && (
+        <MoviesList movies={movies} location={location} filter />
       )}
     </main>
   );

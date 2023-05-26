@@ -1,33 +1,17 @@
 import React from 'react';
-import { useSearchParams } from 'react-router-dom';
-
 import { Form } from './SearchForm.styled';
 
-function SearchForm({ filterMovie }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchQuery = searchParams.get('query') ?? '';
-
-  const handleInputChange = ({ target: { value } }) => {
-    return value !== ''
-      ? setSearchParams({ query: value })
-      : setSearchParams({});
-  };
-  const handleFormSubmit = event => {
-    event.preventDefault();
-    filterMovie(searchQuery);
-    setSearchParams({});
-  };
-
+function SearchForm({ onFormSubmit, onInputChange, inputValue }) {
   return (
-    <Form onSubmit={handleFormSubmit}>
+    <Form onSubmit={onFormSubmit}>
       <input
-        onChange={handleInputChange}
+        onChange={onInputChange}
         className="movie-search-input"
         type="text"
         autoComplete="off"
         autoFocus
         placeholder="Search movie..."
-        value={searchQuery}
+        value={inputValue}
         name="movieQuery"
       />
       <button className="movie-search-button" type="submit">

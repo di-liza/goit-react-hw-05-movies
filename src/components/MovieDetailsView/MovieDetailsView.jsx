@@ -12,7 +12,6 @@ function MovieDetailsView({
     poster_path,
     backdrop_path,
     title,
-    original_title,
     release_date,
     overview,
     genres,
@@ -37,7 +36,7 @@ function MovieDetailsView({
 
         <div className="movie-details__info">
           <div className="info-box">
-            <h2>{original_title}</h2>
+            <h2>{title}</h2>
             <p>({release_date?.slice(0, 4)})</p>
             <p>User Score: {Math.round(userScore)}%</p>
             <p className="movie-details__info-overview">Overview: {overview}</p>

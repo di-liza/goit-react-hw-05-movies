@@ -8,7 +8,7 @@ function MovieDetails() {
   const [movie, setMovie] = useState([]);
 
   const location = useLocation();
-  console.log('location:', location);
+  // console.log('location:', location);
 
   useEffect(() => {
     const getFullInfo = async () => {
@@ -29,7 +29,7 @@ function MovieDetails() {
 
   return (
     <>
-      <Link to="/movies">Back to movies</Link>
+      <Link to={location.state.from}>Back to movies</Link>
       {movie && <MovieDetailsView movie={movie} />}
     </>
   );
