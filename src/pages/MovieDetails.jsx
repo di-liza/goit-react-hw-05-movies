@@ -29,7 +29,6 @@ function MovieDetails() {
   if (movie === []) {
     return <div>Loading...</div>;
   }
-  console.log(movie);
   return (
     <>
       <BackLink to={backLink.current}>
