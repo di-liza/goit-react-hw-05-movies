@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,7 +9,7 @@ import { searchMovie } from 'servises';
 import { MoviesList, SearchBar, Loader } from 'components';
 
 function Movies() {
-  const location = useLocation();
+  // const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
 
@@ -73,9 +73,7 @@ function Movies() {
         onInputChange={handleInputChange}
         inputValue={query}
       />
-      {status === 'resolved' && (
-        <MoviesList movies={movies} location={location} />
-      )}
+      {status === 'resolved' && <MoviesList movies={movies} />}
       <ToastContainer
         position="top-right"
         autoClose={5000}
