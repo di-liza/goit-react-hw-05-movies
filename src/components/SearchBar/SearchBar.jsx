@@ -6,7 +6,7 @@ function SearchBar({ onFormSubmit, onInputChange, inputValue }) {
     <Form onSubmit={onFormSubmit}>
       <input
         onChange={onInputChange}
-        className="movie-search-input"
+        className="input"
         type="text"
         autoComplete="off"
         autoFocus
@@ -14,7 +14,7 @@ function SearchBar({ onFormSubmit, onInputChange, inputValue }) {
         value={inputValue}
         name="movieQuery"
       />
-      <button className="movie-search-button" type="submit">
+      <button className="search-button" type="submit">
         Search
       </button>
     </Form>

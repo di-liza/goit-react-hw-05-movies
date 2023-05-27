@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { Outlet, Link } from 'react-router-dom';
 import { StyledMovieItem } from './MovieItem.styled';
+import { Loader } from 'components';
 
 function MovieItem({ movie: { id, title, poster_path }, location }) {
   const poster = poster_path
@@ -13,6 +14,9 @@ function MovieItem({ movie: { id, title, poster_path }, location }) {
         <img className="movieCard__img" src={poster} alt={title} />
         <h2 className="movieCard__title">{title}</h2>
       </Link>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
     </StyledMovieItem>
   );
 }

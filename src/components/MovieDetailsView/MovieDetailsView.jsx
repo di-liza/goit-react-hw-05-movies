@@ -34,20 +34,33 @@ function MovieDetailsView({
       <StyledMovieDetailsView>
         <div className="movie-details__info">
           <div className="info-box">
-            <h2>{title}</h2>
-            <p>({release_date?.slice(0, 4)})</p>
-            <p>User Score: {Math.round(userScore)}%</p>
-            <p className="movie-details__info-overview">Overview: {overview}</p>
-            <div>
-              <p>Genres</p>
-              <ul>
-                {genres?.map(({ id, name }) => {
-                  return (
-                    <li key={id}>
-                      <p>{name}</p>
-                    </li>
-                  );
-                })}
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <h2>{title}</h2>
+              {release_date ? (
+                <p>({release_date?.slice(0, 4)})</p>
+              ) : (
+                '(Unknown year)'
+              )}
+            </div>
+            <h3 className="score">User Score: {Math.round(userScore)}%</h3>
+            <h3 className="overview">Overview:</h3>
+            {overview ? (
+              <p style={{ width: '400px', margin: '10px, 0' }}>{overview}</p>
+            ) : (
+              'No overview available'
+            )}
+            <div style={{ marginTop: '50px' }}>
+              <h3 className="genres">Genres</h3>
+              <ul className="genres-list">
+                {genres?.length > 0
+                  ? genres?.map(({ id, name }) => {
+                      return (
+                        <li key={id} className="genres-item">
+                          <p>{name}</p>
+                        </li>
+                      );
+                    })
+                  : 'No genre.'}
               </ul>
             </div>
           </div>
@@ -63,10 +76,10 @@ function MovieDetailsView({
               <PageElLink to="cast">Cast</PageElLink>
             </li>
           </ul>
-          <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
         </AdditionalInfo>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </StyledMovieDetailsView>
     </StyledMain>
   );

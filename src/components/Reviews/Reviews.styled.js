@@ -7,10 +7,9 @@ export const ReviewsStyled = styled.main`
   width: 100%;
   max-width: 1242px;
   margin: 0 auto;
-  /* height: 500px; */
   transition: all 0.2s ease-in-out 0s;
   padding: 10px;
-  overflow-y: auto;
+  overflow: overlay;
 
   .reviews-item {
     border-radius: 10px;
@@ -22,8 +21,17 @@ export const ReviewsStyled = styled.main`
     -webkit-transition: all 0.2s ease-in-out 0s;
     transition: all 0.2s ease-in-out 0s;
     padding: 10px;
-
     background: #59555570;
+    :hover {
+      background: linear-gradient(
+        90deg,
+        rgb(251 11 11 / 50%) 0%,
+        rgb(146 12 24 / 50%) 15%,
+        rgb(169 85 19 / 50%) 35%,
+        rgb(204 183 66 / 50%) 45%,
+        rgba(255, 255, 255, 0.2) 90%
+      );
+    }
   }
   .author {
     font-size: 1.4rem;

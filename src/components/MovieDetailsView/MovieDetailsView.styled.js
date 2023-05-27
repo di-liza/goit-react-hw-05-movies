@@ -4,15 +4,11 @@ const { default: styled } = require('@emotion/styled');
 
 export const StyledMain = styled.main`
   height: 56vmax;
-
   background-image: linear-gradient(to right, rgb(0 0 0), rgba(47, 48, 58, 0.4)),
     url(${props => props.bgImage});
   background-size: cover;
   background-position: 50% 50%;
-
   overflow: auto;
-
-  /* Скрытие скроллбара */
   ::-webkit-scrollbar {
     display: none;
   }
@@ -25,6 +21,8 @@ export const StyledMovieDetailsView = styled.div`
   .movie-details__poster {
     width: 300px;
     margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
   }
 
   .movie-details__info {
@@ -34,10 +32,15 @@ export const StyledMovieDetailsView = styled.div`
     justify-content: space-evenly;
     padding-top: 100px;
   }
-  .movie-details__info-overview {
+  .score {
+    color: #ff9d1b;
     width: 300px;
+    margin: 10px 0;
   }
-
+  .overview {
+    width: 300px;
+    margin: 10px 0;
+  }
   .movie-details__additional-info {
     display: flex;
 
@@ -70,19 +73,31 @@ export const StyledMovieDetailsView = styled.div`
     width: 100%;
   }
   .info-box {
-    /* display: flex;
-    flex-wrap: wrap;
-    width: 350px;
-    gap: 15px;
+  }
+  .genres {
+    color: #ff9d1b;
+    margin: 10px 0;
+  }
+  .genres-list {
+    display: flex;
+    gap: 10px;
+    justify-content: left;
     align-items: center;
-    justify-content: left; */
+    .genres-item {
+      position: relative;
+      ::after {
+        content: '';
+        background-color: #ff9d1b;
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        top: 0;
+        right: -5px;
+      }
+    }
   }
 `;
 export const AdditionalInfo = styled.div`
-  /* position: absolute;
-  bottom: 30%;
-  left: 50%;
-  z-index: 100; */
   margin-top: 30px;
 
   .add-info__title {
@@ -130,11 +145,11 @@ export const PageElLink = styled(NavLink)`
   position: relative;
   overflow: hidden;
   z-index: 1;
-  color: #090909;
+  color: #fff;
   padding: 0.7em 1.7em;
   font-size: 18px;
   border-radius: 0.5em;
-  background: #e8e8e8;
+  background: #8566665e;
   border: 1px solid #e8e8e8;
   /* box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff; */
   :active {

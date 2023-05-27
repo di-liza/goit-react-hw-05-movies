@@ -10,7 +10,7 @@ export const SpinnerWrapper = styled.div`
 
   backdrop-filter: blur(10px);
 
-  background-color: rgb(0 0 0 / 81%);
+  /* background-color: ; */
   .spinner {
     position: absolute;
     top: 50%;
@@ -20,15 +20,12 @@ export const SpinnerWrapper = styled.div`
       0px 5px 20px 0px rgb(14, 10, 145);
     background-image: linear-gradient(rgb(149, 17, 17) 35%, rgb(20, 22, 66));
 
-    /* background-image: linear-gradient(rgb(186, 66, 255) 35%, rgb(0, 225, 255)); */
     width: 100px;
     height: 100px;
     animation: spinning82341 1.7s linear infinite;
     text-align: center;
     border-radius: 50px;
     filter: blur(1px);
-    /* box-shadow: 0px -5px 20px 0px rgb(186, 66, 255),
-      0px 5px 20px 0px rgb(0, 225, 255); */
   }
   .spinner1 {
     background-color: rgb(36, 36, 36);

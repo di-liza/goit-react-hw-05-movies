@@ -54,7 +54,6 @@ export const CastStyled = styled.ul`
   margin: 20px 0px;
   width: 100%;
   max-width: 1200px;
-  height: 500px;
   transition: all 0.2s ease-in-out 0s;
   padding: 10px;
   overflow: overlay;
@@ -63,9 +62,7 @@ export const CastStyled = styled.ul`
   .list {
     display: flex;
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
   }
   .item {
@@ -81,8 +78,8 @@ export const CastStyled = styled.ul`
         90deg,
         rgb(251 11 11 / 50%) 0%,
         rgb(146 12 24 / 50%) 15%,
-        rgb(64 21 52 / 50%) 35%,
-        rgb(92 14 127 / 50%) 45%,
+        rgb(169 85 19 / 50%) 35%,
+        rgb(204 183 66 / 50%) 45%,
         rgba(255, 255, 255, 0.2) 90%
       );
     }

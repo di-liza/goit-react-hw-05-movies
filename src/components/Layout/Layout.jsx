@@ -20,7 +20,7 @@ function Layout() {
           </div>
         </nav>
       </StyledHeader>
-      <main>
+      <main style={{ height: '0' }}>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
