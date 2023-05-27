@@ -68,7 +68,7 @@ function MovieDetailsView({
         </div>
         <AdditionalInfo>
           <p className="add-info__title">Additional information</p>
-          <ul className=" add-info__list">
+          <ul className="add-info__list">
             <li>
               <PageElLink to="reviews">Reviews</PageElLink>
             </li>

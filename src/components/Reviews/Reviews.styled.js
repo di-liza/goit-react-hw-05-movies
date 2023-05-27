@@ -9,7 +9,7 @@ export const ReviewsStyled = styled.main`
   margin: 0 auto;
   transition: all 0.2s ease-in-out 0s;
   padding: 10px;
-  overflow: overlay;
+  overflow-y: scroll;
 
   .reviews-item {
     border-radius: 10px;
