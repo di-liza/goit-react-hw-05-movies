@@ -1,10 +1,12 @@
 import React, { Suspense } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import {
   StyledMain,
   StyledMovieDetailsView,
   AdditionalInfo,
+  PageElLink,
 } from './MovieDetailsView.styled';
+import { Loader } from 'components';
 
 function MovieDetailsView({
   movie: {
@@ -55,13 +57,13 @@ function MovieDetailsView({
           <p className="add-info__title">Additional information</p>
           <ul className=" add-info__list">
             <li>
-              <Link to="reviews">Reviews</Link>
+              <PageElLink to="reviews">Reviews</PageElLink>
             </li>
             <li>
-              <Link to="cast">Cast</Link>
+              <PageElLink to="cast">Cast</PageElLink>
             </li>
           </ul>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </AdditionalInfo>

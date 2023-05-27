@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getTrendingMovies } from 'servises';
-import { MoviesList } from 'components';
+import { MoviesList, Hero } from 'components';
 // import { useLocation } from 'react-router-dom';
 
 function Home() {
@@ -21,6 +21,7 @@ function Home() {
   // console.log('location:', location);
   return (
     <>
+      <Hero />
       <MoviesList movies={movies} />
     </>
   );

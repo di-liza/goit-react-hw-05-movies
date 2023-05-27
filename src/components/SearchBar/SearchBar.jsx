@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form } from './SearchForm.styled';
+import { Form } from './SearchBar.styled';
 
-function SearchForm({ onFormSubmit, onInputChange, inputValue }) {
+function SearchBar({ onFormSubmit, onInputChange, inputValue }) {
   return (
     <Form onSubmit={onFormSubmit}>
       <input
@@ -21,4 +21,4 @@ function SearchForm({ onFormSubmit, onInputChange, inputValue }) {
   );
 }
 
-export default SearchForm;
+export default SearchBar;

@@ -1,23 +1,31 @@
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { StyledNav, StyledLink } from './Layout.styled';
+import { StyledHeader, StyledLink } from './Layout.styled';
+import { Loader } from 'components';
+
+import logo from '../icons/logo.png';
 
 function Layout() {
   return (
-    <div>
-      <StyledNav>
-        <StyledLink to="/" end>
-          Home
-        </StyledLink>
-        <StyledLink to="/movies">Movies</StyledLink>
-      </StyledNav>
+    <>
+      <StyledHeader>
+        <nav className="navigation">
+          <img className="logoImg" src={logo} alt="" />
+          <div className="links-box">
+            <StyledLink to="/" end>
+              Home
+            </StyledLink>
+            <StyledLink to="/movies">Movies</StyledLink>
+          </div>
+        </nav>
+      </StyledHeader>
       <main>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </main>
-    </div>
+    </>
   );
 }
 

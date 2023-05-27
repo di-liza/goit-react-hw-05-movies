@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { searchMovie } from 'servises';
-import { MoviesList, SearchForm } from 'components';
+import { MoviesList, SearchBar } from 'components';
 import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ function Movies() {
 
   return (
     <main>
-      <SearchForm
+      <SearchBar
         onFormSubmit={handleFormSubmit}
         onInputChange={handleInputChange}
         inputValue={query}
