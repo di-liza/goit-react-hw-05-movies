@@ -22,7 +22,7 @@ function Home() {
   return (
     <>
       <Hero />
-      <MoviesList movies={movies} />
+      <MoviesList movies={movies} path={'movies/'} />
     </>
   );
 }

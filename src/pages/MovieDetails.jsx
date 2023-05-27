@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { getMovieFullInfo } from 'servises';
 import { MovieDetailsView } from 'components';
@@ -11,6 +11,8 @@ function MovieDetails() {
   const { movieId } = useParams();
 
   const [movie, setMovie] = useState([]);
+
+  const backLink = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
     const getFullInfo = async () => {
@@ -30,7 +32,7 @@ function MovieDetails() {
 
   return (
     <>
-      <BackLink to={location.state?.from ?? '/'}>
+      <BackLink to={backLink.current}>
         <FiArrowLeftCircle color="#fff" />
         <span>Go back</span>
       </BackLink>
