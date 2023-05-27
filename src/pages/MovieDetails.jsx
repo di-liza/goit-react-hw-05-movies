@@ -4,18 +4,16 @@ import { getMovieFullInfo } from 'servises';
 import { MovieDetailsView } from 'components';
 
 function MovieDetails() {
-  const { movieId } = useParams();
-  const [movie, setMovie] = useState([]);
-
   const location = useLocation();
-  // console.log('location:', location);
+  const { movieId } = useParams();
+
+  const [movie, setMovie] = useState([]);
 
   useEffect(() => {
     const getFullInfo = async () => {
       try {
         const data = await getMovieFullInfo(movieId);
         setMovie(data);
-        // console.log('data:', data);
       } catch (error) {
         console.log(error);
       }
@@ -29,7 +27,7 @@ function MovieDetails() {
 
   return (
     <>
-      <Link to={location.state.from}>Back to movies</Link>
+      <Link to={location.state?.from ?? '/'}>Back to movies</Link>
       {movie && <MovieDetailsView movie={movie} />}
     </>
   );

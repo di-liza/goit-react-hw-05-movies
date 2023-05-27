@@ -6,19 +6,25 @@ import { MovieListStyled } from './Cast.styled';
 
 function Cast() {
   const { movieId } = useParams();
-  const [movies, setMovies] = useState(null);
+  const [movie, setMovies] = useState(null);
+
   useEffect(() => {
-    getMovieCast(movieId).then(movies => {
-      // console.log(movies);
-      setMovies(movies);
-    });
+    const getCast = async () => {
+      try {
+        const movie = await getMovieCast(movieId);
+        setMovies(movie);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getCast();
   }, [movieId]);
 
   return (
     <main>
-      {movies && (
+      {movie && (
         <MovieListStyled>
-          {movies.cast.map(({ profile_path, id, name, character }) => {
+          {movie.cast.map(({ profile_path, id, name, character }) => {
             const actorPhoto = profile_path
               ? `https://image.tmdb.org/t/p/w500/${profile_path}`
               : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFvkdU-3EFnpFevKRp3gvL-FWiuKKqoec8mxUltwbXZkZn60uvRyVHfLB9Iermy1kZIxY&usqp=CAU';

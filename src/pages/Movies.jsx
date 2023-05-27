@@ -5,12 +5,11 @@ import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 
 function Movies() {
-  const [movies, setMovies] = useState([]);
   const location = useLocation();
-
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
 
+  const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
 
   const handleInputChange = ({ target: { value } }) => {
@@ -47,9 +46,7 @@ function Movies() {
         inputValue={query}
       />
 
-      {movies.length > 0 && (
-        <MoviesList movies={movies} location={location} filter />
-      )}
+      {movies.length > 0 && <MoviesList movies={movies} location={location} />}
     </main>
   );
 }

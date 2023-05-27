@@ -7,11 +7,17 @@ import { MovieListStyled } from './Reviews.styled';
 function Reviews() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+
   useEffect(() => {
-    getMovieReviews(movieId).then(movie => {
-      // console.log(movie.results);
-      setMovie(movie);
-    });
+    const getReviews = async () => {
+      try {
+        const movie = await getMovieReviews(movieId);
+        setMovie(movie);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getReviews();
   }, [movieId]);
 
   return (

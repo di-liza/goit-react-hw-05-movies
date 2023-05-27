@@ -63,12 +63,12 @@ export const StyledMovieDetailsView = styled.div`
     width: 100%;
   }
   .info-box {
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
     width: 350px;
     gap: 15px;
     align-items: center;
-    justify-content: left;
+    justify-content: left; */
   }
 `;
 export const AdditionalInfo = styled.div`

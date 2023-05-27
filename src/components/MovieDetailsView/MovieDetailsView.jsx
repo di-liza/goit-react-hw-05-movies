@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import {
   StyledMain,
@@ -30,10 +30,6 @@ function MovieDetailsView({
   return (
     <StyledMain bgImage={posterBg}>
       <StyledMovieDetailsView>
-        {/* <div className="movie-details__bg">
-          <img className="movie-details__bg-img" src={posterBg} alt="" />
-        </div> */}
-
         <div className="movie-details__info">
           <div className="info-box">
             <h2>{title}</h2>
@@ -65,7 +61,9 @@ function MovieDetailsView({
               <Link to="cast">Cast</Link>
             </li>
           </ul>
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </AdditionalInfo>
       </StyledMovieDetailsView>
     </StyledMain>

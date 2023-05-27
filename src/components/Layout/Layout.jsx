@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { StyledNav, StyledLink } from './Layout.styled';
@@ -13,7 +13,9 @@ function Layout() {
         <StyledLink to="/movies">Movies</StyledLink>
       </StyledNav>
       <main>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </div>
   );
