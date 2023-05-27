@@ -1,12 +1,16 @@
 import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { Loader } from 'components';
+import placeholder from 'images/no-poster-placeholder.webp';
+
 import {
   StyledMain,
   StyledMovieDetailsView,
   AdditionalInfo,
   PageElLink,
 } from './MovieDetailsView.styled';
-import { Loader } from 'components';
 
 function MovieDetailsView({
   movie: {
@@ -23,7 +27,7 @@ function MovieDetailsView({
 
   const poster = poster_path
     ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-    : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFvkdU-3EFnpFevKRp3gvL-FWiuKKqoec8mxUltwbXZkZn60uvRyVHfLB9Iermy1kZIxY&usqp=CAU';
+    : placeholder;
 
   const posterBg = backdrop_path
     ? `https://image.tmdb.org/t/p/original/${backdrop_path}`
@@ -84,5 +88,20 @@ function MovieDetailsView({
     </StyledMain>
   );
 }
-
+MovieDetailsView.propTypes = {
+  movie: PropTypes.shape({
+    vote_average: PropTypes.number.isRequired,
+    poster_path: PropTypes.string,
+    backdrop_path: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string,
+    overview: PropTypes.string,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      })
+    ),
+  }).isRequired,
+};
 export default MovieDetailsView;

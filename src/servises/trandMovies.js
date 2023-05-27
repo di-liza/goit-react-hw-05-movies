@@ -13,6 +13,6 @@ export default async function getTrendingMovies(page) {
 
     return response.data;
   } catch (error) {
-    console.log(error.message);
+    return error;
   }
 }

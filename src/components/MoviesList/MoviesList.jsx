@@ -1,9 +1,10 @@
 import React, { Suspense } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-// import { MovieItem } from 'components';
-import { StyledMovieItem } from '../MovieItem/MovieItem.styled';
+import PropTypes from 'prop-types';
+
 import { MovieListStyled } from './MoviesList.styled';
 import { Loader } from 'components';
+import placeholder from 'images/no-poster-placeholder.webp';
 
 function MoviesList({ movies, path = '' }) {
   const location = useLocation();
@@ -12,10 +13,10 @@ function MoviesList({ movies, path = '' }) {
       {movies.map(movie => {
         const poster = movie.poster_path
           ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-          : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFvkdU-3EFnpFevKRp3gvL-FWiuKKqoec8mxUltwbXZkZn60uvRyVHfLB9Iermy1kZIxY&usqp=CAU';
+          : placeholder;
 
         return (
-          <StyledMovieItem key={movie.id}>
+          <li key={movie.id} className="item">
             <Link to={`${path}${movie.id}`} state={{ from: location }}>
               <img className="movieCard__img" src={poster} alt={movie.title} />
               <h2 className="movieCard__title">{movie.title}</h2>
@@ -23,9 +24,8 @@ function MoviesList({ movies, path = '' }) {
             <Suspense fallback={<Loader />}>
               <Outlet />
             </Suspense>
-          </StyledMovieItem>
+          </li>
         );
-        // return <MovieItem key={movie.id} movie={movie} location={location} />;
       })}
     </MovieListStyled>
   );
@@ -33,12 +33,12 @@ function MoviesList({ movies, path = '' }) {
 
 export default MoviesList;
 
-//  <StyledMovieItem>
-//    <Link to={`/movies/${id}`} state={{ from: location }}>
-//      <img className="movieCard__img" src={poster} alt={title} />
-//      <h2 className="movieCard__title">{title}</h2>
-//    </Link>
-//    <Suspense fallback={<Loader />}>
-//      <Outlet />
-//    </Suspense>
-//  </StyledMovieItem>;
+MoviesList.propTypes = {
+  path: PropTypes.string,
+
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.node.isRequired,
+    }).isRequired
+  ),
+};

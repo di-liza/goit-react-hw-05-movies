@@ -123,7 +123,7 @@ export const BackLink = styled(NavLink)`
   margin-left: 15px;
   display: flex;
   gap: 5px;
-  align-items: flex-end;
+  align-items: center;
   z-index: 51000;
 
   &:hover {

@@ -29,11 +29,11 @@ function MovieDetails() {
   if (movie === []) {
     return <div>Loading...</div>;
   }
-
+  console.log(movie);
   return (
     <>
       <BackLink to={backLink.current}>
-        <FiArrowLeftCircle color="#fff" />
+        <FiArrowLeftCircle color="#ff9d1b" />
         <span>Go back</span>
       </BackLink>
       {movie && <MovieDetailsView movie={movie} />}

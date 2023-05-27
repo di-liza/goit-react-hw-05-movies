@@ -8,13 +8,15 @@ function Reviews() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
+  const [error, setError] = useState(null);
+
   useEffect(() => {
     const getReviews = async () => {
       try {
         const movie = await getMovieReviews(movieId);
         setMovie(movie);
       } catch (error) {
-        console.log(error);
+        setError(error);
       }
     };
     getReviews();
@@ -22,6 +24,11 @@ function Reviews() {
 
   return (
     <ReviewsStyled>
+      {error && (
+        <p style={{ margin: '100px auto', width: '320px' }}>
+          Something went wrong, try again. <span>{error}</span>
+        </p>
+      )}
       <Outlet />
       {movie && (
         <ul className="reviews-list">

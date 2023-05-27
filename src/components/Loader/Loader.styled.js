@@ -16,9 +16,8 @@ export const SpinnerWrapper = styled.div`
     top: 50%;
     left: 50%;
 
-    box-shadow: 0px -5px 20px 0px rgb(255, 66, 66),
-      0px 5px 20px 0px rgb(14, 10, 145);
-    background-image: linear-gradient(rgb(149, 17, 17) 35%, rgb(20, 22, 66));
+    box-shadow: 0px -5px 20px 0px #b12828, 0px 5px 20px 0px #d6b84a;
+    background-image: linear-gradient(#900909 35%, #ff9d1b);
 
     width: 100px;
     height: 100px;

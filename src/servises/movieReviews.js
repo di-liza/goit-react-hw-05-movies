@@ -11,7 +11,7 @@ async function getMovieReviews(movieId) {
     });
     return response.data;
   } catch (error) {
-    console.log(error.message);
+    return error;
   }
 }
 

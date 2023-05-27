@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { StyledHeader, StyledLink } from './Layout.styled';
 import { Loader } from 'components';
 
-import logo from '../icons/logo.png';
+import logo from 'icons/logo.png';
 
 function Layout() {
   return (

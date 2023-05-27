@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { searchMovie } from 'servises';
-import { MoviesList, SearchBar } from 'components';
 import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
-import { Loader } from 'components';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { searchMovie } from 'servises';
+import { MoviesList, SearchBar, Loader } from 'components';
 
 function Movies() {
   const location = useLocation();
@@ -14,6 +17,7 @@ function Movies() {
   const [query, setQuery] = useState('');
 
   const [status, setStatus] = useState('idle');
+  const [error, setError] = useState('');
 
   const handleInputChange = ({ target: { value } }) => {
     setQuery(value);
@@ -22,8 +26,9 @@ function Movies() {
   const handleFormSubmit = event => {
     event.preventDefault();
     if (query.trim() === '') {
-      setStatus('idle');
-      console.log('Enter a keyword to search for the movie.');
+      return toast.warn(
+        'You entered an empty query. Enter a keyword to search for a movie. '
+      );
     }
     const saveQuery =
       query.trim() !== '' ? setSearchParams({ query }) : setSearchParams({});
@@ -38,13 +43,17 @@ function Movies() {
           setStatus('pending');
           const { results } = await searchMovie(searchQuery);
           if (results.length !== 0) {
-            setStatus('resolved');
             setMovies([...results]);
+            setStatus('resolved');
           } else {
             setStatus('idle');
+            return toast.info(
+              `Sorry, we could not find anything for the query "${searchQuery}". Try again.`
+            );
           }
         } catch (error) {
-          console.log(error);
+          setError(error);
+          setStatus('rejected');
         }
       }
     };
@@ -53,26 +62,32 @@ function Movies() {
 
   return (
     <main>
+      {status === 'rejected' && (
+        <p style={{ margin: '100px auto', width: '320px' }}>
+          Something went wrong, try again. <span>{error}</span>
+        </p>
+      )}
       {status === 'pending' && <Loader />}
       <SearchBar
         onFormSubmit={handleFormSubmit}
         onInputChange={handleInputChange}
         inputValue={query}
       />
-      {status === 'idle' && (
-        <p
-          style={{
-            margin: '30px auto',
-            width: '320px',
-          }}
-        >
-          Enter a keyword to search for the movie.
-        </p>
-      )}
-
       {status === 'resolved' && (
         <MoviesList movies={movies} location={location} />
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </main>
   );
 }
