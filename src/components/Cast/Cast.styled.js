@@ -10,7 +10,7 @@ export const CastStyled = styled.ul`
   padding: 10px;
   overflow-y: scroll;
   margin: 0 auto;
-  max-height: 300px;
+  max-height: 240px;
 
   .list {
     display: flex;

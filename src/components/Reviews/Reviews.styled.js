@@ -10,7 +10,7 @@ export const ReviewsStyled = styled.main`
   transition: all 0.2s ease-in-out 0s;
   padding: 10px;
   overflow-y: scroll;
-  max-height: 300px;
+  max-height: 240px;
   .reviews-item {
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
