@@ -129,6 +129,10 @@ export const PageElLink = styled(NavLink)`
   border-radius: 0.5em;
   background: #8566665e;
   border: 1px solid #e8e8e8;
+
+  &.active {
+    background-color: #900909;
+  }
   :active {
     color: #666;
     box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
