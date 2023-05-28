@@ -4,9 +4,6 @@ const { default: styled } = require('@emotion/styled');
 
 export const StyledMain = styled.main`
   height: 56vmax;
-  position: relative;
-  top: -96px;
-  z-index: -500;
   background-image: linear-gradient(to right, rgb(0 0 0), rgba(47, 48, 58, 0.4)),
     url(${props => props.bgImage});
   background-size: cover;
@@ -18,8 +15,6 @@ export const StyledMain = styled.main`
 `;
 
 export const StyledMovieDetailsView = styled.div`
-  position: relative;
-
   .movie-details__poster {
     width: 300px;
     margin-right: 20px;

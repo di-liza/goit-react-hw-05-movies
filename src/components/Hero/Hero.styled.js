@@ -10,6 +10,7 @@ export const HeroStyled = styled.div`
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding: 180px 0 180px 50px;
+  margin-top: 19px;
 
   .hero-title {
     font-size: 50px;

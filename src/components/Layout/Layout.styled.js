@@ -8,7 +8,7 @@ export const StyledHeader = styled.header`
     width: 100%;
     height: 1px;
     background-color: #fefefe5c;
-    top: 78px;
+    top: 97px;
     position: absolute;
     z-index: -10;
   }
@@ -48,7 +48,7 @@ export const StyledLink = styled(NavLink)`
     ::after {
       content: '';
       position: absolute;
-      top: 45px;
+      top: 53px;
       width: 6px;
       height: 5px;
       border-radius: 50%;
