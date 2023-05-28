@@ -2,27 +2,39 @@ import { NavLink } from 'react-router-dom';
 
 const { default: styled } = require('@emotion/styled');
 
-export const StyledMain = styled.main`
-  height: 56vmax;
-  background-image: linear-gradient(to right, rgb(0 0 0), rgba(47, 48, 58, 0.4)),
-    url(${props => props.bgImage});
-  background-size: cover;
-  background-position: 50% 50%;
+export const StyledMovieDetailsView = styled.main`
   overflow: auto;
+  height: 100vh;
   ::-webkit-scrollbar {
     display: none;
   }
-`;
+  position: relative;
 
-export const StyledMovieDetailsView = styled.div`
-  .movie-details__poster {
+  ::after {
+    content: '';
+    position: absolute;
+    z-index: -1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56vmax;
+    background-image: linear-gradient(
+        to right,
+        rgb(0 0 0),
+        rgba(47, 48, 58, 0.4)
+      ),
+      url(${props => props.bgImage});
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  .poster {
     width: 300px;
     margin-right: 20px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
   }
 
-  .movie-details__info {
+  .info {
     display: flex;
     align-items: center;
     flex-grow: 1;
@@ -38,38 +50,7 @@ export const StyledMovieDetailsView = styled.div`
     width: 300px;
     margin: 10px 0;
   }
-  .movie-details__additional-info {
-    display: flex;
 
-    list-style: none;
-  }
-
-  .movie-details__additional-info li {
-    margin: 0 10px;
-  }
-
-  .movie-details__link-button {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #f1f1f1;
-    color: #333;
-    text-decoration: none;
-    border-radius: 4px;
-  }
-
-  .movie-details__bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -100;
-    width: 100%;
-    background-color: #333;
-  }
-  .movie-details__bg-img {
-    width: 100%;
-  }
-  .info-box {
-  }
   .genres {
     color: #ff9d1b;
     margin: 10px 0;
@@ -92,10 +73,9 @@ export const StyledMovieDetailsView = styled.div`
       }
     }
   }
-`;
-export const AdditionalInfo = styled.div`
-  margin-top: 30px;
-
+  .additional-info {
+    margin-top: 30px;
+  }
   .add-info__title {
     text-align: center;
     font-weight: bold;
@@ -149,7 +129,6 @@ export const PageElLink = styled(NavLink)`
   border-radius: 0.5em;
   background: #8566665e;
   border: 1px solid #e8e8e8;
-  /* box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff; */
   :active {
     color: #666;
     box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;

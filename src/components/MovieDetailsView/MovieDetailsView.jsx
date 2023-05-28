@@ -5,12 +5,7 @@ import PropTypes from 'prop-types';
 import { Loader } from 'components';
 import placeholder from 'images/no-poster-placeholder.webp';
 
-import {
-  StyledMain,
-  StyledMovieDetailsView,
-  AdditionalInfo,
-  PageElLink,
-} from './MovieDetailsView.styled';
+import { PageElLink, StyledMovieDetailsView } from './MovieDetailsView.styled';
 
 function MovieDetailsView({
   movie: {
@@ -34,58 +29,56 @@ function MovieDetailsView({
     : '';
 
   return (
-    <StyledMain bgImage={posterBg}>
-      <StyledMovieDetailsView>
-        <div className="movie-details__info">
-          <div className="info-box">
-            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-              <h2>{title}</h2>
-              {release_date ? (
-                <p>({release_date?.slice(0, 4)})</p>
-              ) : (
-                '(Unknown year)'
-              )}
-            </div>
-            <h3 className="score">User Score: {Math.round(userScore)}%</h3>
-            <h3 className="overview">Overview:</h3>
-            {overview ? (
-              <p style={{ width: '400px', margin: '10px, 0' }}>{overview}</p>
+    <StyledMovieDetailsView bgImage={posterBg}>
+      <div className="info">
+        <div className="info-box">
+          <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+            <h2>{title}</h2>
+            {release_date ? (
+              <p>({release_date?.slice(0, 4)})</p>
             ) : (
-              'No overview available'
+              '(Unknown year)'
             )}
-            <div style={{ marginTop: '50px' }}>
-              <h3 className="genres">Genres</h3>
-              <ul className="genres-list">
-                {genres?.length > 0
-                  ? genres?.map(({ id, name }) => {
-                      return (
-                        <li key={id} className="genres-item">
-                          <p>{name}</p>
-                        </li>
-                      );
-                    })
-                  : 'No genre.'}
-              </ul>
-            </div>
           </div>
-          <img className="movie-details__poster " src={poster} alt={title} />
+          <h3 className="score">User Score: {Math.round(userScore)}%</h3>
+          <h3 className="overview">Overview:</h3>
+          {overview ? (
+            <p style={{ width: '400px', margin: '10px, 0' }}>{overview}</p>
+          ) : (
+            'No overview available'
+          )}
+          <div style={{ marginTop: '50px' }}>
+            <h3 className="genres">Genres</h3>
+            <ul className="genres-list">
+              {genres?.length > 0
+                ? genres?.map(({ id, name }) => {
+                    return (
+                      <li key={id} className="genres-item">
+                        <p>{name}</p>
+                      </li>
+                    );
+                  })
+                : 'No genre.'}
+            </ul>
+          </div>
         </div>
-        <AdditionalInfo>
-          <p className="add-info__title">Additional information</p>
-          <ul className="add-info__list">
-            <li>
-              <PageElLink to="reviews">Reviews</PageElLink>
-            </li>
-            <li>
-              <PageElLink to="cast">Cast</PageElLink>
-            </li>
-          </ul>
-        </AdditionalInfo>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </StyledMovieDetailsView>
-    </StyledMain>
+        <img className="poster " src={poster} alt={title} />
+      </div>
+      <div className="additional-info ">
+        <p className="add-info__title">Additional information</p>
+        <ul className="add-info__list">
+          <li>
+            <PageElLink to="reviews">Reviews</PageElLink>
+          </li>
+          <li>
+            <PageElLink to="cast">Cast</PageElLink>
+          </li>
+        </ul>
+      </div>
+      <Suspense fallback={<Loader />}>
+        <Outlet />
+      </Suspense>
+    </StyledMovieDetailsView>
   );
 }
 MovieDetailsView.propTypes = {
