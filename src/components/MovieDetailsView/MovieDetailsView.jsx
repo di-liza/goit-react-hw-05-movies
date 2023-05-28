@@ -64,6 +64,7 @@ function MovieDetailsView({
         </div>
         <img className="poster " src={poster} alt={title} />
       </div>
+
       <div className="additional-info ">
         <p className="add-info__title">Additional information</p>
         <ul className="add-info__list">

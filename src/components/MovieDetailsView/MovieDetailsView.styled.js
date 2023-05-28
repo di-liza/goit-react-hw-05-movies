@@ -28,6 +28,7 @@ export const StyledMovieDetailsView = styled.main`
     background-position: 50% 50%;
   }
   .poster {
+    margin-top: 100px;
     width: 300px;
     margin-right: 20px;
     border-radius: 5px;
@@ -39,7 +40,10 @@ export const StyledMovieDetailsView = styled.main`
     align-items: center;
     flex-grow: 1;
     justify-content: space-evenly;
-    padding-top: 100px;
+    /* padding-top: 100px; */
+  }
+  .info-box {
+    margin-top: 100px;
   }
   .score {
     color: #ff9d1b;
