@@ -32,7 +32,7 @@ function MovieDetails() {
   return (
     <>
       <BackLink to={backLink.current}>
-        <FiArrowLeftCircle color="#ff9d1b" />
+        <FiArrowLeftCircle />
         <span>Go back</span>
       </BackLink>
       {movie && <MovieDetailsView movie={movie} />}

@@ -98,14 +98,14 @@ export const BackLink = styled(NavLink)`
   margin-left: 15px;
   display: flex;
   gap: 5px;
-  align-items: center;
+  align-items: flex-end;
   z-index: 51000;
 
   &:hover {
-    color: #bf0e0e;
+    color: #ff9d1b;
   }
   &:hover svg {
-    color: #bf0e0e;
+    color: #ff9d1b;
   }
 
   .back-link-box {
