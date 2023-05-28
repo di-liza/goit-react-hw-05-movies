@@ -17,7 +17,7 @@ export const StyledMovieDetailsView = styled.main`
     top: 0;
     left: 0;
     width: 100%;
-    height: 56vmax;
+    height: 63vmax;
     background-image: linear-gradient(
         to right,
         rgb(0 0 0),
@@ -60,7 +60,7 @@ export const StyledMovieDetailsView = styled.main`
     gap: 10px;
     justify-content: left;
     align-items: center;
-    .genres-item {
+    .genres-item:not(:last-child) {
       position: relative;
       ::after {
         content: '';
