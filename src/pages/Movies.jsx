@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { searchMovie } from 'servises';
-import { MoviesList, SearchBar, Loader } from 'components';
+import { MoviesList, SearchBar, Loader, Footer } from 'components';
 import { Container } from 'components/Layout/Layout.styled';
 
 function Movies() {
@@ -99,7 +99,7 @@ function Movies() {
         inputValue={query}
       />
       {status === 'resolved' && (
-        <Container style={{ paddingBottom: '20px' }}>
+        <Container>
           <MoviesList movies={movies} />
           {/* <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} /> */}
           <ReactPaginate
@@ -112,6 +112,7 @@ function Movies() {
             renderOnZeroPageCount={null}
             containerClassName={'paginationListContainer'}
           />
+          <Footer />
         </Container>
       )}
 

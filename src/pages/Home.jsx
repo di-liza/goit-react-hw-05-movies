@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { getTrendingMovies } from 'servises';
 
-import { MoviesList, Hero, Loader } from 'components';
+import { MoviesList, Hero, Loader, Footer } from 'components';
 import { Container } from 'components/Layout/Layout.styled';
 
 function Home() {
@@ -49,7 +49,7 @@ function Home() {
   };
 
   return (
-    <Container style={{ paddingBottom: '20px' }}>
+    <Container>
       <Hero />
       <MoviesList movies={movies} path={'movies/'} />
       {/* <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} /> */}
@@ -64,6 +64,7 @@ function Home() {
         renderOnZeroPageCount={null}
         containerClassName={'paginationListContainer'}
       />
+      <Footer />
     </Container>
   );
 }

@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { StyledHeader, StyledLink } from './Layout.styled';
-import { Footer, Loader } from 'components';
+import { Loader } from 'components';
 
 import logo from 'icons/logo.png';
 
@@ -24,7 +24,6 @@ function Layout() {
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-        <Footer />
       </>
     </>
   );
