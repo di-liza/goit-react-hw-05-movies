@@ -1,5 +1,6 @@
 import React from 'react';
 import { ButtonWrapper } from './SwButtons.styled';
+import { BiChevronsLeft, BiChevronsRight } from 'react-icons/bi';
 
 function SwButtons({ onClickSwichBtn, page }) {
   return (
@@ -12,6 +13,7 @@ function SwButtons({ onClickSwichBtn, page }) {
             onClickSwichBtn('prev');
           }}
         >
+          <BiChevronsLeft />
           Prev page
         </button>
       </li>
@@ -23,6 +25,7 @@ function SwButtons({ onClickSwichBtn, page }) {
           }}
         >
           Next page
+          <BiChevronsRight />
         </button>
       </li>
     </ButtonWrapper>

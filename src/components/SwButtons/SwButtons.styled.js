@@ -15,7 +15,8 @@ export const ButtonWrapper = styled.ul`
     border-radius: 5px;
     color: #ffffff;
     background-color: #900909;
-    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
     transition: background-color 0.3s ease;
 
     &:hover {
