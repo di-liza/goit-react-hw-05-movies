@@ -7,7 +7,7 @@ import { getTrendingMovies } from 'servises';
 // SwButtons;
 import { MoviesList, Hero, Loader } from 'components';
 
-function Home({ itemsPerPage }) {
+function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchPage = searchParams.get('page') ?? 1;
 

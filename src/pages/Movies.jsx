@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 // import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
+import ReactPaginate from 'react-paginate';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { searchMovie } from 'servises';
-import { MoviesList, SearchBar, Loader, SwButtons } from 'components';
+// SwButtons
+import { MoviesList, SearchBar, Loader } from 'components';
+import { Container } from '../components/SwButtons/SwButtons.styled';
 
 function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,6 +18,7 @@ function Movies() {
 
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
+  const [totalPages, setTotalPages] = useState(0);
 
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
@@ -43,8 +47,12 @@ function Movies() {
       if (searchQuery !== '') {
         try {
           setStatus('pending');
-          const { results } = await searchMovie(searchQuery, searchPage);
+          const { results, total_pages } = await searchMovie(
+            searchQuery,
+            searchPage
+          );
           if (results.length !== 0) {
+            setTotalPages(total_pages);
             setMovies([...results]);
             setStatus('resolved');
           } else {
@@ -62,17 +70,21 @@ function Movies() {
     getMovies();
   }, [searchQuery, searchPage]);
 
-  const handlePageToggle = action => {
-    if (searchPage === 1 && action === 'prev')
-      return setSearchParams({ query: searchQuery, page: 1 });
+  // const handlePageToggle = action => {
+  //   if (searchPage === 1 && action === 'prev')
+  //     return setSearchParams({ query: searchQuery, page: 1 });
 
-    const prevPage = Number(searchParams.get('page')) || 1;
+  //   const prevPage = Number(searchParams.get('page')) || 1;
 
-    if (action === 'prev') {
-      setSearchParams({ query: searchQuery, page: prevPage - 1 });
-    } else {
-      setSearchParams({ query: searchQuery, page: prevPage + 1 });
-    }
+  //   if (action === 'prev') {
+  //     setSearchParams({ query: searchQuery, page: prevPage - 1 });
+  //   } else {
+  //     setSearchParams({ query: searchQuery, page: prevPage + 1 });
+  //   }
+  // };
+
+  const handlePageClick = event => {
+    setSearchParams({ query: searchQuery, page: event.selected + 1 });
   };
 
   return (
@@ -89,10 +101,20 @@ function Movies() {
         inputValue={query}
       />
       {status === 'resolved' && (
-        <div style={{ paddingBottom: '20px' }}>
+        <Container style={{ paddingBottom: '20px' }}>
           <MoviesList movies={movies} />
-          <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} />
-        </div>
+          {/* <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} /> */}
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={5}
+            pageCount={totalPages}
+            previousLabel="<"
+            renderOnZeroPageCount={null}
+            containerClassName={'paginationListContainer'}
+          />
+        </Container>
       )}
 
       <ToastContainer
