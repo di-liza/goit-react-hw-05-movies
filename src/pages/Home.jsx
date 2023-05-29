@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
-// import '../../node_modules/react-paginate/theme/basic/react-paginate.css';
-import { Container } from '../components/SwButtons/SwButtons.styled';
 import { getTrendingMovies } from 'servises';
-// SwButtons;
+
 import { MoviesList, Hero, Loader } from 'components';
+import { Container } from 'components/Layout/Layout.styled';
 
 function Home() {
   const [searchParams, setSearchParams] = useSearchParams();

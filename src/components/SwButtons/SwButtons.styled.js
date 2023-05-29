@@ -31,30 +31,3 @@ export const ButtonWrapper = styled.ul`
     }
   }
 `;
-
-export const Container = styled.ul`
-  .paginationListContainer {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-
-    li {
-      width: 45px;
-      height: 25px;
-      display: flex;
-      background-color: #900909;
-      border-radius: 4px;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-
-      &:hover {
-        background-color: #ff0c0c;
-      }
-      a {
-        padding: 2px 18px;
-      }
-    }
-  }
-`;

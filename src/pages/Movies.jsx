@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
 
+import ReactPaginate from 'react-paginate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { searchMovie } from 'servises';
-// SwButtons
 import { MoviesList, SearchBar, Loader } from 'components';
-import { Container } from '../components/SwButtons/SwButtons.styled';
+import { Container } from 'components/Layout/Layout.styled';
 
 function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
