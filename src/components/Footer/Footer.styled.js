@@ -2,9 +2,9 @@ const { default: styled } = require('@emotion/styled');
 
 export const StyledFooter = styled.footer`
   background-color: #1d0202;
-  padding: 10px;
+  padding: 20px;
 
-  position: relative;
+  position: absolute;
   width: 100%;
   bottom: 0;
 
