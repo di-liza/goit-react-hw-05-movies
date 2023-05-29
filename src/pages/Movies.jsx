@@ -9,13 +9,12 @@ import { searchMovie } from 'servises';
 import { MoviesList, SearchBar, Loader, SwButtons } from 'components';
 
 function Movies() {
-  // const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query') ?? '';
+  const searchPage = searchParams.get('page') ?? 1;
 
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
 
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
@@ -32,7 +31,9 @@ function Movies() {
       );
     }
     const saveQuery =
-      query.trim() !== '' ? setSearchParams({ query }) : setSearchParams({});
+      query.trim() !== ''
+        ? setSearchParams({ query, page: 1 })
+        : setSearchParams({});
     setQuery('');
     return saveQuery;
   };
@@ -42,7 +43,7 @@ function Movies() {
       if (searchQuery !== '') {
         try {
           setStatus('pending');
-          const { results } = await searchMovie(searchQuery, page);
+          const { results } = await searchMovie(searchQuery, searchPage);
           if (results.length !== 0) {
             setMovies([...results]);
             setStatus('resolved');
@@ -59,13 +60,19 @@ function Movies() {
       }
     };
     getMovies();
-  }, [searchQuery, page]);
+  }, [searchQuery, searchPage]);
 
   const handlePageToggle = action => {
-    setPage(prev => {
-      if (prev === 1 && action === 'prev') return setPage(1);
-      return action === 'prev' ? prev - 1 : prev + 1;
-    });
+    if (searchPage === 1 && action === 'prev')
+      return setSearchParams({ query: searchQuery, page: 1 });
+
+    const prevPage = Number(searchParams.get('page')) || 1;
+
+    if (action === 'prev') {
+      setSearchParams({ query: searchQuery, page: prevPage - 1 });
+    } else {
+      setSearchParams({ query: searchQuery, page: prevPage + 1 });
+    }
   };
 
   return (
@@ -83,8 +90,8 @@ function Movies() {
       />
       {status === 'resolved' && (
         <div style={{ paddingBottom: '20px' }}>
-          <MoviesList movies={movies} />{' '}
-          <SwButtons onClickSwichBtn={handlePageToggle} page={page} />
+          <MoviesList movies={movies} />
+          <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} />
         </div>
       )}
 
