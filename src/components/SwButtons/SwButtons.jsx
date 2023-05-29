@@ -1,11 +1,31 @@
 import React from 'react';
+import { ButtonWrapper } from './SwButtons.styled';
 
-function SwButtons() {
+function SwButtons({ onClickSwichBtn, page }) {
   return (
-    <div>
-      <button>Prev page</button>
-      <button>Next page</button>
-    </div>
+    <ButtonWrapper>
+      <li>
+        <button
+          className="button"
+          disabled={page === 1}
+          onClick={() => {
+            onClickSwichBtn('prev');
+          }}
+        >
+          Prev page
+        </button>
+      </li>
+      <li>
+        <button
+          className="button"
+          onClick={() => {
+            onClickSwichBtn('next');
+          }}
+        >
+          Next page
+        </button>
+      </li>
+    </ButtonWrapper>
   );
 }
 

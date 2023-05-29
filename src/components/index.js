@@ -10,3 +10,4 @@ export { default as MoviesList } from './MoviesList/MoviesList.jsx';
 export { default as MovieDetailsView } from './MovieDetailsView/MovieDetailsView.jsx';
 
 export { default as Loader } from './Loader/Loader.jsx';
+export { default as SwButtons } from './SwButtons/SwButtons.jsx';
