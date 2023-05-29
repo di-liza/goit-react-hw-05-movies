@@ -74,6 +74,7 @@ export const Container = styled.ul`
       align-items: center;
       justify-content: center;
       margin-bottom: 10px;
+      transition: background-color 0.3s ease;
 
       &:hover {
         background-color: #ff0c0c;
