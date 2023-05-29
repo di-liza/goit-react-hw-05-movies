@@ -10,7 +10,7 @@ function MoviesList({ movies, path = '' }) {
   const location = useLocation();
   return (
     <MovieListStyled>
-      {movies.map(movie => {
+      {movies?.map(movie => {
         const poster = movie.poster_path
           ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
           : placeholder;
