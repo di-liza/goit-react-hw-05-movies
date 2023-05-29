@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { searchMovie } from 'servises';
-import { MoviesList, SearchBar, Loader } from 'components';
+import { MoviesList, SearchBar, Loader, SwButtons } from 'components';
 
 function Movies() {
   // const location = useLocation();
@@ -15,6 +15,7 @@ function Movies() {
 
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
 
   const [status, setStatus] = useState('idle');
   const [error, setError] = useState('');
@@ -41,7 +42,7 @@ function Movies() {
       if (searchQuery !== '') {
         try {
           setStatus('pending');
-          const { results } = await searchMovie(searchQuery);
+          const { results } = await searchMovie(searchQuery, page);
           if (results.length !== 0) {
             setMovies([...results]);
             setStatus('resolved');
@@ -58,7 +59,14 @@ function Movies() {
       }
     };
     getMovies();
-  }, [searchQuery]);
+  }, [searchQuery, page]);
+
+  const handlePageToggle = action => {
+    setPage(prev => {
+      if (prev === 1 && action === 'prev') return setPage(1);
+      return action === 'prev' ? prev - 1 : prev + 1;
+    });
+  };
 
   return (
     <main>
@@ -73,7 +81,13 @@ function Movies() {
         onInputChange={handleInputChange}
         inputValue={query}
       />
-      {status === 'resolved' && <MoviesList movies={movies} />}
+      {status === 'resolved' && (
+        <div style={{ paddingBottom: '20px' }}>
+          <MoviesList movies={movies} />{' '}
+          <SwButtons onClickSwichBtn={handlePageToggle} page={page} />
+        </div>
+      )}
+
       <ToastContainer
         position="top-right"
         autoClose={5000}
