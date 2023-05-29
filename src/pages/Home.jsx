@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { getTrendingMovies } from 'servises';
-import { MoviesList, Hero, SwButtons } from 'components';
+import { MoviesList, Hero, SwButtons, Loader } from 'components';
 
 function Home() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getTrandMovies = async () => {
       if (page >= 1) {
         try {
+          setIsLoading(true);
           const { results } = await getTrendingMovies(page);
           setMovies(results);
         } catch (error) {
           console.log('error:', error);
+        } finally {
+          setIsLoading(false);
         }
       }
     };
@@ -32,6 +36,7 @@ function Home() {
       <Hero />
       <MoviesList movies={movies} path={'movies/'} />
       <SwButtons onClickSwichBtn={handlePageToggle} page={page} />
+      {isLoading && <Loader />}
     </div>
   );
 }
