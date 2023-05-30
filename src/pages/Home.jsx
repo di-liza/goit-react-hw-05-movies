@@ -51,6 +51,15 @@ function Home() {
   return (
     <Container>
       <Hero />
+      <h2
+        style={{
+          textAlign: 'center',
+          margin: '30px 0 0 186px',
+          fontSize: '40px',
+        }}
+      >
+        In this week's trend:
+      </h2>
       <MoviesList movies={movies} path={'movies/'} />
       {/* <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} /> */}
       {isLoading && <Loader />}
