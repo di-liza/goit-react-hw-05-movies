@@ -6,6 +6,9 @@ export { default as Footer } from './Footer/Footer.jsx';
 export { default as Cast } from './Cast/Cast.jsx';
 export { default as Reviews } from './Reviews/Reviews.jsx';
 
+export { default as HomeTitle } from './HomeTitle/HomeTitle.jsx';
+export { default as ErrorMessage } from './ErrorMessage/ErrorMessage.jsx';
+
 export { default as SearchBar } from './SearchBar/SearchBar.jsx';
 export { default as MoviesList } from './MoviesList/MoviesList.jsx';
 export { default as MovieDetailsView } from './MovieDetailsView/MovieDetailsView.jsx';

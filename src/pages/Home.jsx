@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import { getTrendingMovies } from 'servises';
 
-import { MoviesList, Hero, Loader, Footer } from 'components';
+import { MoviesList, Hero, Loader, Footer, HomeTitle } from 'components';
 import { Container } from 'components/Layout/Layout.styled';
 
 function Home() {
@@ -20,6 +20,7 @@ function Home() {
         try {
           setIsLoading(true);
           const { results, total_pages } = await getTrendingMovies(searchPage);
+          console.log('results:', results);
           setTotalPages(total_pages);
           setMovies(results);
         } catch (error) {
@@ -51,15 +52,7 @@ function Home() {
   return (
     <Container>
       <Hero />
-      <h2
-        style={{
-          textAlign: 'center',
-          marginTop: '30px',
-          fontSize: '40px',
-        }}
-      >
-        In this week's trend:
-      </h2>
+      <HomeTitle />
       <MoviesList movies={movies} path={'movies/'} />
       {/* <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} /> */}
       {isLoading && <Loader />}

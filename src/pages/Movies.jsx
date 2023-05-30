@@ -6,7 +6,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { searchMovie } from 'servises';
-import { MoviesList, SearchBar, Loader, Footer } from 'components';
+import {
+  MoviesList,
+  SearchBar,
+  Loader,
+  Footer,
+  ErrorMessage,
+} from 'components';
 import { Container } from 'components/Layout/Layout.styled';
 
 function Movies() {
@@ -87,11 +93,7 @@ function Movies() {
 
   return (
     <main>
-      {status === 'rejected' && (
-        <p style={{ margin: '100px auto', width: '320px' }}>
-          Something went wrong, try again. <span>{error}</span>
-        </p>
-      )}
+      {status === 'rejected' && <ErrorMessage error={error} />}
       {status === 'pending' && <Loader />}
       <SearchBar
         onFormSubmit={handleFormSubmit}
