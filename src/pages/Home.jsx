@@ -54,7 +54,7 @@ function Home() {
       <h2
         style={{
           textAlign: 'center',
-          margin: '30px 0 0 186px',
+          marginTop: '30px',
           fontSize: '40px',
         }}
       >
