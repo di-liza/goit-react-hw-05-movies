@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import ReactPaginate from 'react-paginate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,6 +13,7 @@ import {
   ErrorMessage,
 } from 'components';
 import { Container } from 'components/Layout/Layout.styled';
+import Pagination from 'components/Pagination/Pagination';
 
 function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -88,6 +88,7 @@ function Movies() {
   // };
 
   const handlePageClick = event => {
+    console.log('event:', event);
     setSearchParams({ query: searchQuery, page: event.selected + 1 });
   };
 
@@ -104,16 +105,11 @@ function Movies() {
         <Container>
           <MoviesList movies={movies} />
           {/* <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} /> */}
-          <ReactPaginate
-            breakLabel="..."
-            nextLabel=">"
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={totalPages}
-            previousLabel="<"
-            renderOnZeroPageCount={null}
-            containerClassName={'paginationListContainer'}
+          <Pagination
+            handlePageClick={handlePageClick}
+            totalPages={totalPages}
           />
+
           <Footer />
         </Container>
       )}

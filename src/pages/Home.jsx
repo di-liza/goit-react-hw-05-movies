@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
 import { getTrendingMovies } from 'servises';
 
 import { MoviesList, Hero, Loader, Footer, HomeTitle } from 'components';
 import { Container } from 'components/Layout/Layout.styled';
+import Pagination from 'components/Pagination/Pagination';
 
 function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,7 +20,6 @@ function Home() {
         try {
           setIsLoading(true);
           const { results, total_pages } = await getTrendingMovies(searchPage);
-          console.log('results:', results);
           setTotalPages(total_pages);
           setMovies(results);
         } catch (error) {
@@ -46,7 +45,12 @@ function Home() {
   //   }
   // };
   const handlePageClick = event => {
-    setSearchParams({ page: event.selected + 1 });
+    console.log('event:', event);
+    if (event.selected === 0) {
+      setSearchParams({ page: 1 });
+    } else {
+      setSearchParams({ page: event.selected + 1 });
+    }
   };
 
   return (
@@ -56,16 +60,7 @@ function Home() {
       <MoviesList movies={movies} path={'movies/'} />
       {/* <SwButtons onClickSwichBtn={handlePageToggle} page={searchPage} /> */}
       {isLoading && <Loader />}
-      <ReactPaginate
-        breakLabel="..."
-        nextLabel=">"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={totalPages}
-        previousLabel="<"
-        renderOnZeroPageCount={null}
-        containerClassName={'paginationListContainer'}
-      />
+      <Pagination handlePageClick={handlePageClick} totalPages={totalPages} />
       <Footer />
     </Container>
   );
